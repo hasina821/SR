@@ -16,7 +16,6 @@ import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 import { Color } from '../palette/color';
 
 
@@ -34,8 +33,6 @@ const theme = createTheme();
 
 export default function SignIn(props) {
   const [erreur, setErreur] = useState(false);
-  const history=useHistory();
-  const {url} = useSelector(state => state.user )
 
   const classes=useStyle(); 
 
@@ -57,6 +54,8 @@ export default function SignIn(props) {
   });
 
   const handleSignin = (data) => {
+    console.log("login");
+    {/* 
     axios.post(url+`auth/login/`, {
       "email": data.email,
       "password": data.password
@@ -69,10 +68,10 @@ export default function SignIn(props) {
     }).catch((err)=>{
       setErreur("Merci de bien vouloir vérifier les champs");
     })
+    */}
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -137,6 +136,5 @@ export default function SignIn(props) {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

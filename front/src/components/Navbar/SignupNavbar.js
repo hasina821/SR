@@ -21,14 +21,16 @@ export default function SignupNav() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{backgroundColor:'#dfe4ea',boxShadow:'none'}}>
         <Toolbar>
-        <Avatar variant='square' style={{width:'200px',height:'50px'}} src='https://raw.githubusercontent.com/hasina821/Avaizo/56f81d1df54872e7ed8202e0463bd2da38026dfe/Front/public/logo.svg'>
-          </Avatar>
-          <Typography variant="h6" component="div" sx={{color:"#000b76",flexGrow: 1,fontWeight:900,marginLeft:'1%' }}>
-            SMART-RECRUTE
-          </Typography>
-          <Link to='/login' style={{textDecoration:'none'}}>
-            <StyledLink>SE CONNECTER</StyledLink>
-          </Link>
+            <Link to='/' style={{textDecoration:'none'}}>
+                <Avatar variant='square' style={{width:'200px',height:'50px'}} src='https://raw.githubusercontent.com/hasina821/Avaizo/56f81d1df54872e7ed8202e0463bd2da38026dfe/Front/public/logo.svg'>
+                </Avatar>
+            </Link>
+            <Typography variant="h6" component="div" sx={{color:"#000b76",flexGrow: 1,fontWeight:900,marginLeft:'1%' }}>
+                SMART-RECRUTE
+            </Typography>
+            <Link to='/login' style={{textDecoration:'none'}}>
+                <StyledLink>SE CONNECTER</StyledLink>
+            </Link>
         </Toolbar>
       </AppBar>
     </Box>

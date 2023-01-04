@@ -1,0 +1,13 @@
+POST https://api.zamandresyprod.mg/api/login
+Content-Type: application/json
+//Authorization: Bearer <access_token>
+
+{
+
+    "pseudonyme": "hasina",
+	"birthDate": "14-02-2000",
+	"gender": "M",
+	"email": "test@gmail.ai",
+	"password": "mypassword"
+
+}

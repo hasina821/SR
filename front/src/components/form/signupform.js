@@ -16,7 +16,6 @@ import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
-import { initialState } from '../../toolkit/user';
 import {Color} from "../palette/color"
 
 const useStyle=makeStyles({
@@ -58,21 +57,25 @@ export default function SignUp (props) {
     resolver: yupResolver(validationSchema)
   });
 
-  const handleSignup = (data) => {
-    axios.post(initialState.url + `auth/register/`, {
-      "password": data.password,
-      "firstName": data.nom,
-      "lastName": data.prenom,
-      "email": data.email
-    })
-    .then(res => {
-      if(res.data) history.push("/");
-    }).catch((err)=>{
-      setErreur("Merci de bien vouloir vérifier les champs");
-      console.log(erreur);
-    })
-  };
-
+    
+    const handleSignup = (data) => {
+        console.log("signup");
+        {/* 
+        axios.post(initialState.url + `auth/register/`, {
+        "password": data.password,
+        "firstName": data.nom,
+        "lastName": data.prenom,
+        "email": data.email
+        })
+        .then(res => {
+        if(res.data) history.push("/");
+        }).catch((err)=>{
+        setErreur("Merci de bien vouloir vérifier les champs");
+        console.log(erreur);
+        })
+        */}
+    };
+    
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
