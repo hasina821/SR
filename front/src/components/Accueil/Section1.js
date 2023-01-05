@@ -89,7 +89,6 @@ const Section1 = () =>{
                autoplay: true,
                animationData: require('./fond1.json')
           })
-    
     },[])
     return(
         <>

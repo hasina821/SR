@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { makeStyles } from '@mui/styles';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import { Color } from '../palette/color';
@@ -131,7 +131,9 @@ export default function SignIn(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2,bgcolor:Color.primary }}
             >
-              Connecter
+              <Link to="/clientHome">
+                Connecter
+              </Link>
             </Button>
           </Box>
         </Box>

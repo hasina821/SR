@@ -12,7 +12,7 @@ const useStyles=makeStyles({
     background:"#dfe4ea"
   }
 })
-export default function Signin(){
+export default function Signup(){
     const classes=useStyles();
     const token = localStorage.getItem('user-token') ? localStorage.getItem('user-token') : false;
     /*if(token) {

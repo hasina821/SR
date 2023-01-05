@@ -10,7 +10,6 @@ const StyledParagraph=styled('p')({
     fontWeight: 400,
     lineHeight: 1.5,
     textSizeAdjust: '100%',
-    
 
 })
 const useStyles=makeStyles({
@@ -18,8 +17,6 @@ const useStyles=makeStyles({
         fontWeight: 400,
         lineHeight: 1.5,
         textSizeAdjust: '100%',
-        
-        
     },
     contain:{
         margin:'1% auto'

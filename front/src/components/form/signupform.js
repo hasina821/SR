@@ -13,7 +13,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { makeStyles } from '@mui/styles';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 import {Color} from "../palette/color"
@@ -31,7 +30,6 @@ const useStyle=makeStyles({
 const theme = createTheme();
 
 export default function SignUp (props) {
-  const history=useHistory();
 
   const classes=useStyle();
   const [erreur, setErreur] = useState(false);

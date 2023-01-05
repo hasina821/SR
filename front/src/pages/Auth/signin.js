@@ -4,7 +4,6 @@ import { makeStyles } from "@mui/styles"
 import AuthNav from "../../components/Navbar/AuthNavbar"
 import { Container,Grid } from "@mui/material"
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
 import lottie from "lottie-web"
 import {styled} from "@mui/styles"
 
@@ -19,8 +18,7 @@ const useStyles=makeStyles({
   }
 })
 
-export default function Signup(){
-  const history = useHistory();
+export default function Signin(){
     const classes=useStyles();
     let image1 = useRef(null);
     let image2 = useRef(null);
