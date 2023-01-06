@@ -3,9 +3,9 @@ import { Routes,Route } from "react-router-dom"
 import Topbar from "../scenes/global/Topbar";
 import Sidebar from "../scenes/global/Sidebar";
 import Dashboard from "../scenes/dashboard";
-import Team from "../scenes/team";
+import Offres from "../scenes/offres";
 import Invoices from "../scenes/invoices";
-import Contacts from "../scenes/contacts";
+import Dossiers from "../scenes/Dossiers";
 import Bar from "../scenes/bar";
 import Form from "../scenes/form";
 import Line from "../scenes/line";
@@ -30,10 +30,10 @@ export default function AdminRoutes () {
             <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
                 <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/" element={<Offres />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/post" element={<Post />} />
-                    <Route path="/team" element={<Team />} />
-                    <Route path="/contacts" element={<Contacts />} />
+                    <Route path="/dossiers" element={<Dossiers />} />
                     <Route path="/invoices" element={<Invoices />} />
                     <Route path="/form" element={<Form />} />
                     <Route path="/bar" element={<Bar />} />

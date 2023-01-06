@@ -15,20 +15,24 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 import Item from "./Item";
+import { Color } from "../../components/palette/color";
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
 
 
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("Les offres");
 
   return (
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
+          background: Color.primary ,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -63,7 +67,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  ADMIN
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -79,7 +83,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={`https://avatars.githubusercontent.com/u/80751503?s=96&v=4`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -90,87 +94,72 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  RAMAMIHARIVELO
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  Marihasina
                 </Typography>
               </Box>
             </Box>
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Dashboard"
-              to="/admin"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+              Offres
             </Typography>
             <Item
-              title="Manage Team"
-              to="/admin/team"
-              icon={<PeopleOutlinedIcon />}
+              title="Les offres"
+              to="/admin/"
+              icon={<AutoAwesomeMotionIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
-              to="/admin/contacts"
-              icon={<ContactsOutlinedIcon />}
+              title="Dossiers"
+              to="/admin/dossiers"
+              icon={<DriveFileMoveIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
-              to="/admin/invoices"
-              icon={<ReceiptOutlinedIcon />}
+              title="Statistiques"
+              to="/admin/dashboard"
+              icon={<TrendingUpIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Pages
+              Utilisateur
             </Typography>
             <Item
-              title="Profile Form"
-              to="/admin/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Calendar"
+              title="Calendrier"
               to="/admin/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
-              to="/admin/faq"
-              icon={<HelpOutlineOutlinedIcon />}
+              title="Ajouter un utilisateur"
+              to="/admin/form"
+              icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
+            {/* 
             <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
+            
               Charts
             </Typography>
             <Item
@@ -201,6 +190,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            */}
           </Box>
         </Menu>
       </ProSidebar>

@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataTeam } from "../../data/mockData";
@@ -6,71 +6,69 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/cards/stats/Header";
+import { Color } from "../../components/palette/color";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DoneIcon from '@mui/icons-material/Done';
+import { Link } from "react-router-dom";
 
-const Team = () => {
+const Offres = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "nom",
+      headerName: "Nom",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
+      field: "Nb_de_postulants",
+      headerName: "Nb_de_postulants",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "Date_de_creation",
+      headerName: "Date_de_creation",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "Disponibilté",
+      headerName: "Disponibilté",
       flex: 1,
     },
     {
-      field: "accessLevel",
-      headerName: "Access Level",
+      field: "Action",
+      headerName: "Action",
       flex: 1,
-      renderCell: ({ row: { access } }) => {
+      renderCell: () => {
         return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : access === "manager"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
+          <>
+            <Grid container>
+              <Grid item xs={4} lg={4}>
+                <Link to="/admin/post">
+                  <DoneIcon style={{color:Color.primary,cursor:'pointer'}}/>
+                </Link>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+                <ModeEditIcon style={{color:"#ff0",cursor:'pointer'}}/>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+                <DeleteIcon style={{color:"#f00",cursor:'pointer'}}/>
+              </Grid>
+            </Grid>
+          </>
+        )
+      }
     },
   ];
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="OFFRE" subtitle="Gérer les offres" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -85,7 +83,7 @@ const Team = () => {
             color: colors.greenAccent[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: Color.primary,
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -106,4 +104,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default Offres;

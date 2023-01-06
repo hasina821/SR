@@ -1,5 +1,6 @@
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
+import { Color } from "./components/palette/color";
 
 // color design tokens export
 export const tokens = (mode) => ({
@@ -130,7 +131,7 @@ export const themeSettings = (mode) => {
         ? {
             // palette values for dark mode
             primary: {
-              main: colors.primary[500],
+              main: Color.primary,
             },
             secondary: {
               main: colors.greenAccent[500],

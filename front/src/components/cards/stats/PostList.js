@@ -10,6 +10,7 @@ import {addCard} from "../../../toolkit/post"
 import { useDispatch } from "react-redux";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SaveIcon from '@mui/icons-material/Save';
+import { Color } from "../../palette/color"
 
 
 const AddCardButton = styled(Button)({
@@ -39,7 +40,7 @@ const PushcardButton = styled(Button)({
    });
 
    const ColumnTitle = styled(Typography)({
-     color: '#172b4d',
+     color: Color.primary,
      fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif',    
      fontSize: '14px',
      fontWeight: '700',

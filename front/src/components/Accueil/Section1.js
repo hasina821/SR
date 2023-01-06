@@ -92,39 +92,45 @@ const Section1 = () =>{
     },[])
     return(
         <>
-            <SignupNav/>
-            <div className={classes.BoxContainer}>
-                <Grid container className={classes.contain}>
-                    <Grid  item xs={12} lg={7} xl={7} md={7} sm={7} >
-                        <Box className={classes.Box1}>
-                            <h1 className={classes.title}>Smart-recrute vous facilite les taches.</h1>
-                            <StyledToposub>
-                            Collaborez, gérez votre recrutement et fais confiance à Smart-recrute,on va vous facilite vos tâches.
-                            </StyledToposub>
-                            <Grid container>
-                                <Grid item xs={12} lg={8} xl={8} md={8} sm={8}>
-                                    <StyledSearch>
-                                        <StyledInput placeholder="Email"/>
-                                    </StyledSearch>
+        <div class="overflow-hidden w-full min-h-screen font-sans" style={{background:Color.primary}}>
+            <div class="relative">
+                    <img class="absolute opacity-70" src="https://raw.githubusercontent.com/tailwindcollections/tailwind-traffic-website/d208364918d92be9afb20d24e236fdb9bfc4fbf9/public/img/bg-1.svg" alt="">
+                    </img>
+                <SignupNav/>
+                <div className={classes.BoxContainer}>
+                    <Grid container className={classes.contain}>
+                        <Grid  item xs={12} lg={7} xl={7} md={7} sm={7} >
+                            <Box className={classes.Box1}>
+                                <h1 className={classes.title}>Smart-recrute vous facilite les taches.</h1>
+                                <StyledToposub>
+                                Collaborez, gérez votre recrutement et fais confiance à Smart-recrute,on va vous facilite vos tâches.
+                                </StyledToposub>
+                                <Grid container>
+                                    <Grid item xs={12} lg={8} xl={8} md={8} sm={8}>
+                                        <StyledSearch>
+                                            <StyledInput placeholder="Email"/>
+                                        </StyledSearch>
+                                    </Grid>
+                                    <Grid item xs={12} lg={4} xl={4} md={4} sm={4}>
+                                        <Link to='/signup'>
+                                            <StyledSignup>S'inscrire</StyledSignup>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={12} lg={4} xl={4} md={4} sm={4}>
-                                    <Link to='/signup'>
-                                        <StyledSignup>S'inscrire</StyledSignup>
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                        </Box>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} lg={5} xl={5} md={5} sm={5}>
+                            <div ref={image}></div>
+                        </Grid>
+                        <Divider sx={{width:'70%',margin:'2% 2%'}}/>
                     </Grid>
-                    <Grid item xs={12} lg={5} xl={5} md={5} sm={5}>
-                        <div ref={image}></div>
+                    <Grid container className={classes.contain1}>
+                        <Section2/>
                     </Grid>
-                    <Divider sx={{width:'70%',margin:'2% 2%'}}/>
-                </Grid>
-                <Grid container className={classes.contain1}>
-                    <Section2/>
-                </Grid>
-                <MiniFooter/>
+                    <MiniFooter/>
+                </div>
             </div>
+        </div>
         </>
     )
 }

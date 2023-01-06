@@ -5,6 +5,9 @@ import AdminRoutes from "./AdminRoutes";
 import Signin from "../pages/Auth/signin"
 import Signup from "../pages/Auth/signup";
 import ClientHome from "../pages/client";
+import Suivi from "../pages/Suivi";
+import Addpostclient from "../pages/Addpostclient/Addpostclient";
+import Pdf from "../pages/pdf";
 
 
 function AppRouter() {
@@ -16,6 +19,9 @@ function AppRouter() {
         <Route path="/login" element={<Signin/>} exact={true} />
         <Route path="/signup"  element={<Signup/>} exact={true} />
         <Route path="/clienthome"  element={<ClientHome/>} exact={true} />
+        <Route path="/suivi"  element={<Suivi/>} exact={true} />
+        <Route path="/addpostclient"  element={<Addpostclient/>} exact={true} />
+        <Route path="/pdf"  element={<Pdf/>} exact={true} />
     </Routes>
     </>
   );

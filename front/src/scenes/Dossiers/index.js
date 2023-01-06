@@ -3,31 +3,36 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/cards/stats/Header";
-import { useTheme } from "@mui/material";
+import { useTheme,Grid } from "@mui/material";
+import { Color } from "../../components/palette/color";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DoneIcon from '@mui/icons-material/Done';
 
-const Contacts = () => {
+
+const Dossiers = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
+    { field: "Reference", headerName: "Reference" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "Nom",
+      headerName: "Nom",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
+      field: "Poste_demandé",
+      headerName: "Poste_demandé",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "Date_de_depôt",
+      headerName: "Date_de_depôt",
       flex: 1,
     },
     {
@@ -36,27 +41,34 @@ const Contacts = () => {
       flex: 1,
     },
     {
-      field: "address",
-      headerName: "Address",
+      field: "Action",
+      headerName: "Action",
       flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
-      flex: 1,
+      renderCell: () => {
+        return (
+          <>
+            <Grid container>
+              <Grid item xs={4} lg={4}>
+                <DoneIcon style={{color:Color.primary,cursor:'pointer'}}/>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+                <ModeEditIcon style={{color:"#ff0",cursor:'pointer'}}/>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+                <DeleteIcon style={{color:"#f00",cursor:'pointer'}}/>
+              </Grid>
+            </Grid>
+          </>
+        )
+      }
     },
   ];
 
   return (
     <Box m="20px">
       <Header
-        title="CONTACTS"
-        subtitle="List of Contacts for Future Reference"
+        title="Dossiers"
+        subtitle="Liste de candidatures"
       />
       <Box
         m="40px 0 0 0"
@@ -72,7 +84,7 @@ const Contacts = () => {
             color: colors.greenAccent[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: Color.primary,
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -100,4 +112,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default Dossiers;

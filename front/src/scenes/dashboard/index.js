@@ -11,7 +11,13 @@ import LineChart from "../../components/cards/stats/LineChart";
 import GeographyChart from "../../components/cards/stats/GeographyChart";
 import BarChart from "../../components/cards/stats/BarChart";
 import StatBox from "../../components/cards/stats/StatBox";
-import ProgressCircle from "../../components/cards/stats/ProgressCircle";
+import { Color } from "../../components/palette/color";
+import ArticleIcon from '@mui/icons-material/Article';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import TaskIcon from '@mui/icons-material/Task';
+import PlagiarismIcon from '@mui/icons-material/Plagiarism';
+import OffreStat from "../../components/cards/stats/Offrestat";
+import { dataOffre } from "../../data/mockData";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -21,12 +27,12 @@ const Dashboard = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="STATISTIQUE" subtitle="Statistique des offres et postulants" />
 
         <Box>
           <Button
             sx={{
-              backgroundColor: colors.blueAccent[700],
+              backgroundColor: Color.primary,
               color: colors.grey[100],
               fontSize: "14px",
               fontWeight: "bold",
@@ -49,18 +55,18 @@ const Dashboard = () => {
         {/* ROW 1 */}
         <Box
           gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
+          backgroundColor={Color.primary}
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
+            title="124"
+            subtitle="Offres"
+            progress="0.14"
             increase="+14%"
             icon={
-              <EmailIcon
+              <ArticleIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -68,18 +74,18 @@ const Dashboard = () => {
         </Box>
         <Box
           gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
+          backgroundColor={Color.primary}
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
+            title="450"
+            subtitle="Postulants"
+            progress="0.21"
             increase="+21%"
             icon={
-              <PointOfSaleIcon
+              <GroupAddIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -87,18 +93,18 @@ const Dashboard = () => {
         </Box>
         <Box
           gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
+          backgroundColor={Color.primary}
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
-            progress="0.30"
+            title="21"
+            subtitle="Offres satisfaits"
+            progress="0.05"
             increase="+5%"
             icon={
-              <PersonAddIcon
+              <TaskIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -106,18 +112,18 @@ const Dashboard = () => {
         </Box>
         <Box
           gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
+          backgroundColor={Color.primary}
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
-            subtitle="Traffic Received"
-            progress="0.80"
+            title="103"
+            subtitle="Offres non satisfaits"
+            progress="0.43"
             increase="+43%"
             icon={
-              <TrafficIcon
+              <PlagiarismIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -128,7 +134,7 @@ const Dashboard = () => {
         <Box
           gridColumn="span 8"
           gridRow="span 2"
-          backgroundColor={colors.primary[400]}
+          backgroundColor={Color.primary}
         >
           <Box
             mt="25px"
@@ -143,14 +149,14 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                Statistique de l'offres
               </Typography>
               <Typography
                 variant="h3"
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                $59,342.32
+
               </Typography>
             </Box>
             <Box>
@@ -162,7 +168,7 @@ const Dashboard = () => {
             </Box>
           </Box>
           <Box height="250px" m="-20px 0 0 0">
-            <LineChart isDashboard={true} />
+            <OffreStat data={dataOffre} />
           </Box>
         </Box>
         <Box
@@ -180,7 +186,7 @@ const Dashboard = () => {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
+              Top 3  de l'offre
             </Typography>
           </Box>
           {mockTransactions.map((transaction, i) => (
@@ -191,10 +197,11 @@ const Dashboard = () => {
               alignItems="center"
               borderBottom={`4px solid ${colors.primary[500]}`}
               p="15px"
+              backgroundColor="#fff"
             >
               <Box>
                 <Typography
-                  color={colors.greenAccent[500]}
+                  color={Color.primary}
                   variant="h5"
                   fontWeight="600"
                 >
@@ -204,19 +211,20 @@ const Dashboard = () => {
                   {transaction.user}
                 </Typography>
               </Box>
-              <Box color={colors.grey[100]}>{transaction.date}</Box>
+              
               <Box
-                backgroundColor={colors.greenAccent[500]}
+                backgroundColor={Color.primary}
                 p="5px 10px"
                 borderRadius="4px"
               >
-                ${transaction.cost}
+                {transaction.cost}
               </Box>
             </Box>
           ))}
         </Box>
 
         {/* ROW 3 */}
+        {/*
         <Box
           gridColumn="span 4"
           gridRow="span 2"
@@ -243,6 +251,7 @@ const Dashboard = () => {
             <Typography>Includes extra misc expenditures and costs</Typography>
           </Box>
         </Box>
+        
         <Box
           gridColumn="span 4"
           gridRow="span 2"
@@ -276,6 +285,7 @@ const Dashboard = () => {
             <GeographyChart isDashboard={true} />
           </Box>
         </Box>
+         */}
       </Box>
     </Box>
   );

@@ -2,9 +2,9 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const initialState=[
      {id:`list-${0}`,title:"Nouveau",allowcreatecard:true,cards:[
-          {id:`card-${0}`,description:"description1"},
-          {id:`card-${1}`,description:"description2"},
-          {id:`card-${2}`,description:"description3"}
+          {id:`card-${0}`,description:"RAMAMIHARIVELO Marihasina"},
+          {id:`card-${1}`,description:"FIDIMAHEFA Miharintsoa"},
+          {id:`card-${2}`,description:"RAMAMY Koto"}
      ]},
      {id:`list-${1}`,title:"Entretien en ligne",allowcreatecard:false,cards:[
           {id:`card-${3}`,description:"desc1"},

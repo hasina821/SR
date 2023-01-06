@@ -25,6 +25,9 @@ export default function Post(){
      }
      return(
           <Fragment>
+               <h1 className="ml-4 text-2xl font-semibold text-white p-4 rounded-2xl">
+                    Data analist
+               </h1>
                <DragDropContext onDragEnd={onDragEnd}>
                     <div>
                          <h1>{post.title}</h1>

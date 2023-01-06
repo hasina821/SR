@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import Header from "../../components/cards/stats/Header";
 import { tokens } from "../../theme";
+import { Color } from "../../components/palette/color";
 
 const Calendar = () => {
   const theme = useTheme();
@@ -48,13 +49,13 @@ const Calendar = () => {
 
   return (
     <Box m="20px">
-      <Header title="Calendar" subtitle="Full Calendar Interactive Page" />
+      <Header title="Calendrier" subtitle="Fixer ici la date de votre entretien" />
 
       <Box display="flex" justifyContent="space-between">
         {/* CALENDAR SIDEBAR */}
         <Box
           flex="1 1 20%"
-          backgroundColor={colors.primary[400]}
+          backgroundColor={Color.primary}
           p="15px"
           borderRadius="4px"
         >
@@ -64,9 +65,10 @@ const Calendar = () => {
               <ListItem
                 key={event.id}
                 sx={{
-                  backgroundColor: colors.greenAccent[500],
+                  backgroundColor: "#fff",
                   margin: "10px 0",
                   borderRadius: "2px",
+                  color:"#000"
                 }}
               >
                 <ListItemText
@@ -110,7 +112,7 @@ const Calendar = () => {
             eventClick={handleEventClick}
             eventsSet={(events) => setCurrentEvents(events)}
             initialEvents={[
-              {
+             {/* {
                 id: "12315",
                 title: "All-day event",
                 date: "2022-09-14",
@@ -119,7 +121,7 @@ const Calendar = () => {
                 id: "5123",
                 title: "Timed event",
                 date: "2022-09-28",
-              },
+              }*/},
             ]}
           />
         </Box>

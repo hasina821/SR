@@ -1,29 +1,65 @@
+import {useState} from "react";
 import PlayIcon from "../../components/logo/play";
 import SpeakerPhoneIcon from "../../components/logo/speaker";
 import ShoppingBagIcon from "../../components/logo/shopping";
 import ChipIcon from "../../components/logo/Chip";
 import ChartIcon from "../../components/logo/chart";
 import { Color } from "../../components/palette/color";
+import CardPost from "../../components/cards/stats/cardPost";
+import { Link } from "react-router-dom";
+import {Link as Lank} from "react-scroll";
+import Footer from "../../components/Footer";
 
 
 export default function ClientHome(){
-    const menu = ["Offres", "Mes candudatures", "Suivre un cv", "Doléances", "Parler au RH"];
+    const menu = [
+        {
+            id:"offre",
+            title:"Nos offres",
+            link:"/offres"
+        },
+        {
+            id:"contact",
+            title:"Nous contacter",
+            link:"/contact"
+        }
+        ];
     const features = [
     {
         icon: <SpeakerPhoneIcon/>,
-        title: "Digital Marketing",
+        name: "Digital Marketing",
     },
     {
         icon: <ShoppingBagIcon/>,
-        title: "E-Commerce",
+        name: "E-Commerce",
     },
     {
         icon: <ChipIcon/>,
-        title: "Digital Research",
+        name: "Digital Research",
     },
     {
         icon: <ChartIcon/>,
-        title: "Digital Analysis",
+        name: "Digital Analysis",
+    },
+    {
+        icon: <ChartIcon/>,
+        name: "Developpeur web",
+    },
+    {
+        icon: <ChartIcon/>,
+        name: "Data analiste",
+    },
+    {
+        icon: <ChartIcon/>,
+        name: "RH junior",
+    },
+    {
+        icon: <ChartIcon/>,
+        name: "Devops",
+    },
+    {
+        icon: <ChartIcon/>,
+        name: "Developpeur fullstuck",
     },
     ];
     return(
@@ -38,10 +74,24 @@ export default function ClientHome(){
                             class="hidden md:items-center md:tracking-wider md:text-gray-300 md:gap-8 lg:gap-x-16 md:flex"
                         >
                             {menu.map((item=>(
-                                <li key={item}>
-                                    {item}
-                                </li>
+                                <Lank 
+                                to={item.id}
+                                activeClass="active"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500}
+                                >
+                                    <li className="p-4 hover:bg-white hover:rounded-2xl hover:text-gray-900 ease-in duration-300 cursor-pointer" key={item.id}>
+                                        {item.title}
+                                    </li>
+                                </Lank>
                             )))}
+                            <Link to="/suivi">
+                                    <li className="p-4 hover:bg-white hover:rounded-2xl hover:text-gray-900 ease-in duration-300 cursor-pointer">
+                                        Suivre un dossier
+                                    </li>
+                            </Link>
                         </ul>
                         <button
                             class="hidden py-3 px-6 font-medium tracking-wider leading-5 text-white rounded-md border-2 border-gray-800 transition md:inline-block hover:bg-teal-300 hover:text-gray-900 hover:shadow-lg"
@@ -90,40 +140,32 @@ export default function ClientHome(){
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="relative">
-                    <img class="absolute bottom-0 right-0 rotate-180 opacity-70" src="https://raw.githubusercontent.com/tailwindcollections/tailwind-traffic-website/d208364918d92be9afb20d24e236fdb9bfc4fbf9/public/img/bg-1.svg" alt=""></img>
+                </div> 
+                <h1
+                    style={{textAlign:"center",marginTop:"5%"}}
+                    class=" z-10 pt-10 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl"
+                                >
+                                Nos offres
+                </h1>
+                <div id="offre" class="relative">
+                    
                 <div class="relative py-16 px-8 mx-auto max-w-7xl">
                     <div
                     class="grid grid-cols-2 gap-4 items-start py-16 w-full md:grid-cols-4 md:gap-x-8"
                     >
                     {features.map((feature)=>(
                         <div
-                            class="flex overflow-hidden relative flex-col items-start p-6 bg-gray-300 rounded-lg transition duration-300 cursor-pointer group hover:bg-white"
+                            key={feature.name}
+                            class="flex overflow-hidden relative flex-col items-start rounded-lg transition duration-300 cursor-pointer group"
                         >
-                            <span
-                            key={feature.title}
-                            class="absolute top-0 right-0 w-24 h-24 bg-indigo-900 transition-transform ease-out rotate-45 translate-x-20 -translate-y-20 group-hover:translate-x-14 group-hover:-translate-y-14"
-                            />
-                                <div
-                                class="p-2 bg-gray-900 rounded-md transition duration-300 group-hover:bg-indigo-9000"
-                                >
-                                {/* 
-                                <Component
-                                
-                                    class="w-6 h-6 text-white transition duration-300 group-hover:text-gray-800"
-                                />
-                                */}
-                                </div>
-                                    <span
-                                    class="inline-block pt-6 text-2xl font-medium tracking-wide text-gray-800 transition duration-300 group-hover:text-gray-800"
-                                    >
-                                    {feature.title}
-                                    </span>
+                            <CardPost menu={feature}  />
                         </div>
                      ))}
                     </div>
                 </div>
+                </div>
+                <div id="contact" className="mt-64">
+                    <Footer/>
                 </div>
             </div>
         </>
