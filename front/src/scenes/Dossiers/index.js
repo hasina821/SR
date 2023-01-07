@@ -48,13 +48,10 @@ const Dossiers = () => {
         return (
           <>
             <Grid container>
-              <Grid item xs={4} lg={4}>
-                <DoneIcon style={{color:Color.primary,cursor:'pointer'}}/>
+              <Grid item xs={6} lg={6}>
+                <DoneIcon style={{color:'white',cursor:'pointer'}}/>
               </Grid>
-              <Grid item xs={4} lg={4}>
-                <ModeEditIcon style={{color:"#ff0",cursor:'pointer'}}/>
-              </Grid>
-              <Grid item xs={4} lg={4}>
+              <Grid item xs={6} lg={6}>
                 <DeleteIcon style={{color:"#f00",cursor:'pointer'}}/>
               </Grid>
             </Grid>

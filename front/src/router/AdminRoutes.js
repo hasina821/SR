@@ -16,6 +16,7 @@ import Calendar from "../scenes/calendar/calendar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "../theme";
 import Post from "../pages/post/post";
+import AddpostAdmin from "../pages/admin/Addpostadmin";
 
 export default function AdminRoutes () {
     const [theme, colorMode] = useMode();
@@ -42,6 +43,7 @@ export default function AdminRoutes () {
                     <Route path="/faq" element={<FAQ />} />
                     <Route path="/calendar" element={<Calendar />} />
                     <Route path="/geography" element={<Geography />} />
+                    <Route path="/addpost" element={<AddpostAdmin />} />
                 </Routes>
             </main> 
           </div>

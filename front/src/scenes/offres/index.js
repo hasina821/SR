@@ -1,16 +1,15 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Grid, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataTeam } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/cards/stats/Header";
 import { Color } from "../../components/palette/color";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DoneIcon from '@mui/icons-material/Done';
 import { Link } from "react-router-dom";
+import {Button} from "@mui/material"
+import AddIcon from '@mui/icons-material/Add';
 
 const Offres = () => {
   const theme = useTheme();
@@ -50,7 +49,7 @@ const Offres = () => {
             <Grid container>
               <Grid item xs={4} lg={4}>
                 <Link to="/admin/post">
-                  <DoneIcon style={{color:Color.primary,cursor:'pointer'}}/>
+                  <DoneIcon style={{color:'white',cursor:'pointer'}}/>
                 </Link>
               </Grid>
               <Grid item xs={4} lg={4}>
@@ -68,7 +67,26 @@ const Offres = () => {
 
   return (
     <Box m="20px">
-      <Header title="OFFRE" subtitle="Gérer les offres" />
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Header title="OFFRE" subtitle="Gérer les offres" />
+
+        <Box>
+          <Button
+            sx={{
+              backgroundColor: Color.primary,
+              color: colors.grey[100],
+              fontSize: "14px",
+              fontWeight: "bold",
+              padding: "10px 20px",
+            }}
+          >
+            <Link to="/admin/addpost">
+           <AddIcon sx={{ mr: "10px" }}/>
+           Nouveau offre
+           </Link>
+          </Button>
+        </Box>
+      </Box>
       <Box
         m="40px 0 0 0"
         height="75vh"
