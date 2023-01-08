@@ -21,10 +21,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::controller(CandidatureController::class)->group(function() {
+    Route::get('candidatures', 'getAll');
+    Route::get('candidature/{id}', 'getOne');
+    Route::post('candidature', 'save');
+    Route::put('candidature/update/{id}','update');
+    Route::delete('candidature/delete/{id}','delete');
+});
+
 Route::controller(OfferController::class)->group(function() {
     Route::get('offers', 'getAll');
     Route::get('offer/{id}', 'getOne');
     Route::post('offer', 'save');
+    Route::put('offer/update/{id}','update');
+    Route::delete('offer/delete/{id}','destroy');
 });
 
 Route::controller(UserAuthController::class)->group(function() {

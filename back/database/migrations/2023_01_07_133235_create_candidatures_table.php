@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('nom',50);
             $table->string('prenom',15);
             $table->string('email',50);
+            $table->string('es', 50);
+            $table->string('state');
+            $table->string('refoffre',25);
             $table->string('cv', 200);
             $table->string('lm', 200);
-            $table->string('es', 50);
-            $table->number ('state');
             $table->timestamps();
         });
     }

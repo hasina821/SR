@@ -23,7 +23,6 @@ class OfferController extends Controller
         $offer = DB::table('offres')->where('id', $id)->first();
 
         if(!$offer) {
-
             return response()->json([
                 'status' => 'Not found',
                 'Message' => 'Ressource Not found'
@@ -40,6 +39,15 @@ class OfferController extends Controller
         $path = Storage::putFile('public/offres', $request->file('pdc'));
         $path = str_replace('public', 'storage', $path);
 
+        $offer = Offre::find($request->ref);
+
+        if($offer){
+            return response()->json([
+                "status"=>"Not allowed",
+                "Message"=>"Un offre avec ce reference existe déjà"
+            ],Response::HTTP_CONFLICT);
+        }
+
         $offer = Offre::create([
             'nom' => $request->nom,
             'ref' => $request->ref,
@@ -55,4 +63,28 @@ class OfferController extends Controller
             'offre' => $offer
         ], Response::HTTP_CREATED);
     }
+    public function update(Request $request,int $id){
+        $offer = Offre::find($id);
+        if (!$offer) {
+            return response()->json([
+                "status"=>"Not found",
+                "message"=>"Resource not found"
+            ],Response::HTTP_NOT_FOUND);
+        }
+
+        $offer->update($request->all());
+        return response()->json([
+            "status"=>"Sucess",
+            "offer"=>$offer
+        ],Response::HTTP_ACCEPTED);
+    }
+    public function destroy($id)
+    {
+        Offre::destroy($id);
+        return response()->json([
+            "Status"=>"Success",
+            "Message"=>"Deleted successfully"
+        ],Response::HTTP_ACCEPTED);
+    }
+
 }
