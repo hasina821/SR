@@ -56,9 +56,7 @@ class CandidatureController extends Controller
             'state'=>$request->state,
             'refoffre'=>$request->refoffre,
             'cv'=>$cvpath,
-            'lm'=>$lmpath,
-
-
+            'lm'=>$lmpath
         ]);
 
         return response()->json([
@@ -66,7 +64,6 @@ class CandidatureController extends Controller
             "candidature"=>$candidature
         ],Response::HTTP_CREATED);
     }
-
 
     public function update(Request $request,int $id)
     {

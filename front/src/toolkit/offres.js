@@ -1,14 +1,3 @@
-import {createSlice} from "@reduxjs/toolkit"
-import { createAsyncThunk } from "@reduxjs/toolkit"
-
-
-const initialState = {
-    offres:[]
-}
-
-
-const OffreSlice= createSlice({
-    name:'offres',
-    extraReducers:{}
-})
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { initialState } from "./user";
+import axios from "axios";
