@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { baseUrl } from "../utils/baseUrl";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
+export const authUrl = "http://127.0.0.1:8000/api"
 
 export const userLogin = createAsyncThunk(
     'auth/login',
@@ -13,12 +14,12 @@ export const userLogin = createAsyncThunk(
           },
         }
         const { data } = await axios.post(
-          `${backendURL}/api/user/login`,
+          `${authUrl}/login`,
           { email, password },
           config
         )
         localStorage.setItem('userToken', data.userToken)
-        return data
+        console.log(data);
       } catch (error) {
         if (error.response && error.response.data.message) {
           return rejectWithValue(error.response.data.message)
@@ -28,24 +29,21 @@ export const userLogin = createAsyncThunk(
       }
     }
   )
-
 
 export const registerUser = createAsyncThunk(
     'auth/register',
-    async ({ firstName, email, password }, { rejectWithValue }) => {
+    async ({ username, email, password }, { rejectWithValue }) => {
       try {
-        const config = {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
         await axios.post(
-          `${backendURL}/api/user/register`,
-          { firstName, email, password },
-          config
-        )
+          `${authUrl}/register`,
+          { username, email, password }
+        ).then(res=>{
+            if(res.user){
+                console.log(res.user);
+            }
+        })
+        
       } catch (error) {
-      // return custom error message from backend if present
         if (error.response && error.response.data.message) {
           return rejectWithValue(error.response.data.message)
         } else {
@@ -54,17 +52,39 @@ export const registerUser = createAsyncThunk(
       }
     }
   )
+  
+  const userToken = localStorage.getItem('userToken')
+  ? localStorage.getItem('userToken')
+  : null 
 
-const AuthSlice = createSlice({
-    name: 'auth-reducer',
-    initialState: [],
-    extrareducers: {
-        login: (state, action) => {
-            return action.payload
-        }
-    }
-})
-
-export const register_action = (data) => {
-    baseUrl.post("/register", data).then(res => console.log(res)).catch(err => console.log(err))
+  const initialState = {
+  loading: false,
+  userInfo: null,
+  userToken,
+  error: null,
+  success: false,
 }
+
+  const authSlice = createSlice({
+    name: 'auth',
+    initialState,
+    reducers: {},
+    extraReducers: {
+      [userLogin.pending]: (state) => {
+        state.loading = true
+        state.error = null
+      },
+      [userLogin.fulfilled]: (state, { payload }) => {
+        state.loading = false
+        state.userInfo = payload
+        state.userToken = payload.userToken
+      },
+      [userLogin.rejected]: (state, { payload }) => {
+        state.loading = false
+        state.error = payload
+      },
+    },
+  })
+
+
+export default authSlice.reducer

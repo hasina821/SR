@@ -9,9 +9,26 @@ import CardPost from "../../components/cards/stats/cardPost";
 import { Link } from "react-router-dom";
 import {Link as Lank} from "react-scroll";
 import Footer from "../../components/Footer";
+import LogoutIcon from '@mui/icons-material/Logout';
+import {Menu,MenuItem} from "@mui/material";
+import {styled} from "@mui/styles";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+export const StyledTitle =styled('p')({
+    textAlign:'center',
+    fontSize:'12px',
+    color:'#5e6c84',
+    lineHeight:'10px'
+  
+  })
 
 
 export default function ClientHome(){
+
+    const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+
     const menu = [
         {
             id:"offre",
@@ -62,6 +79,13 @@ export default function ClientHome(){
         name: "Developpeur fullstuck",
     },
     ];
+
+    const logout = () => {
+        localStorage.removeItem('user-token');// clear your user's token from localstorage
+        localStorage.removeItem('user-this_id'); 
+        delete axios.defaults.headers.common['Authorization'];
+       navigate("/");
+      }
     return(
         <>
            <div class="overflow-hidden w-full min-h-screen font-sans" style={{background:Color.primary}}>
@@ -93,11 +117,27 @@ export default function ClientHome(){
                                     </li>
                             </Link>
                         </ul>
-                        <button
-                            class="hidden py-3 px-6 font-medium tracking-wider leading-5 text-white rounded-md border-2 border-gray-800 transition md:inline-block hover:bg-teal-300 hover:text-gray-900 hover:shadow-lg"
-                        >
-                            COMMENCER
-                        </button>
+                        <Menu
+                                style={{background:'#fff'}}
+                                id="demo-positioned-menu"
+                                aria-labelledby="demo-positioned-button"
+                                open={open}
+                                onClose={(e) => setOpen(false)}
+                                anchorOrigin={{
+                                vertical: 40,
+                                horizontal: "right",
+                                }}
+                                transformOrigin={{
+                                vertical: "top",
+                                horizontal: "right",
+                                }}
+                            
+                            >
+                                
+                                <MenuItem>
+                                    <StyledTitle onClick={()=>logout()}>Se déconnecter</StyledTitle>
+                                </MenuItem>
+                            </Menu>
                         </nav>
                     </div>
                     <div class="relative py-10 px-8 mx-auto max-w-7xl">

@@ -13,9 +13,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { makeStyles } from '@mui/styles';
-import { Link, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Color } from '../palette/color';
+import {useDispatch} from "react-redux";
+import { userLogin } from '../../toolkit/auth';
 
 const useStyle=makeStyles({
   root:{
@@ -31,8 +33,9 @@ const theme = createTheme();
 
 export default function SignIn(props) {
   const [erreur, setErreur] = useState(false);
-
   const classes=useStyle(); 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -52,21 +55,13 @@ export default function SignIn(props) {
   });
 
   const handleSignin = (data) => {
-    console.log("login");
-    {/* 
-    axios.post(url+`auth/login/`, {
-      "email": data.email,
-      "password": data.password
-    })
-    .then(res => {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token;
-      localStorage.setItem('user-token', 'Bearer ' + res.data.access_token)
-      localStorage.setItem('user-this_id', res.data.userId)
-      history.push("/home");
-    }).catch((err)=>{
-      setErreur("Merci de bien vouloir vérifier les champs");
-    })
-    */}
+    try {
+      dispatch(userLogin(data))
+      navigate('/clientHome')
+    } catch (error) {
+      console.log(error.message);
+    }
+    
   };
 
   return (
@@ -129,9 +124,7 @@ export default function SignIn(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2,bgcolor:Color.primary }}
             >
-              <Link to="/clientHome">
                 Connecter
-              </Link>
             </Button>
           </Box>
         </Box>
