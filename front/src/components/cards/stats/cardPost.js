@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import {styled} from "@mui/styles";
 import PostCardModal from '../../Modal/PostCardModal';
+import IsUrgent from './IsUrgent.js';
 
 const MystyledBox  = styled(Box)({
     width:'40%',
@@ -52,9 +53,9 @@ const useStyles = makeStyles((theme)=>({
     display:'flex',
     flexWrap:'wrap',
     textDecoration:'none',
-    color:'white',
+    color:'#000',
     overflow:'auto',
-    marginTop:'15px',
+    marginTop:'30px',
     '& .p-title':{
           fontWeight:'bold',
           
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme)=>({
 }));
 
 
-export default function CardPost({ menu }) {
+export default function CardPost({ nom,urgent }) {
   const classes = useStyles();
   const [isOpen, setIsOpen] =  useState(false)
   
@@ -101,16 +102,7 @@ export default function CardPost({ menu }) {
                 </MystyledBox>
             </Modal>
             <Box flex={3} >
-                <Box className={classes.model}>
-                    <Typography variant='p' className='p-model'>
-                        Urgent
-                    </Typography>
-                </Box>
-                <Box className={classes.title}>
-                <Typography onClick={handleOpen} variant='p' className='p-title' style={{color:"#555"}} noWrap>
-                    {menu.name.length > 15 ? menu.name.slice(0,15) + "..." : menu.name}
-                </Typography>
-                </Box>    
+                <h4 className={classes.title}>Nom</h4>
             </Box>
             <Box sx={{ flex:1}}>
             <IconButton 

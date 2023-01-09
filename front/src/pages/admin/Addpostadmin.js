@@ -1,5 +1,8 @@
 import React from "react";
 import { Color } from "../../components/palette/color";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
 export default function AddpostAdmin(){
     return(

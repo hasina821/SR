@@ -12,14 +12,16 @@ export const userLogin = createAsyncThunk(
           headers: {
             'Content-Type': 'application/json',
           },
-        }
-        const { data } = await axios.post(
+        } 
+        const  {data}  = await axios.post(
           `${authUrl}/login`,
           { email, password },
           config
         )
-        localStorage.setItem('userToken', data.userToken)
-        console.log(data);
+        //console.log(data);
+        //console.log(data.token);
+        localStorage.setItem('user', JSON.stringify(data.user))
+        localStorage.setItem('userToken', JSON.stringify(data.token))
       } catch (error) {
         if (error.response && error.response.data.message) {
           return rejectWithValue(error.response.data.message)
@@ -59,7 +61,7 @@ export const registerUser = createAsyncThunk(
 
   const initialState = {
   loading: false,
-  userInfo: null,
+  userInfo: {},
   userToken,
   error: null,
   success: false,
@@ -74,10 +76,10 @@ export const registerUser = createAsyncThunk(
         state.loading = true
         state.error = null
       },
-      [userLogin.fulfilled]: (state, { payload }) => {
+      [userLogin.fulfilled]: (state,  payload ) => {
         state.loading = false
-        state.userInfo = payload
-        state.userToken = payload.userToken
+        state.userInfo = payload.user
+        state.userToken = payload.token
       },
       [userLogin.rejected]: (state, { payload }) => {
         state.loading = false
