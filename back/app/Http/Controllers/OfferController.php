@@ -91,7 +91,7 @@ class OfferController extends Controller
             ],Response::HTTP_NOT_FOUND);
         }
 
-        $candidature=DB::table('candidatures')->where('refoffre', $ref)->first();
+        $candidature=candidature::where('refoffre',$ref)->get()->toArray();
         return response()->json([
             "status"=>"Sucess",
             "offre"=> $offre,

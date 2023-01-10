@@ -34,7 +34,7 @@ class CandidatureController extends Controller
     }
     public function save(Request $request)
     {
-        $oldcandidature = DB::table('candidatures')->where('refoffre',$request->refoffre)->get();
+        $oldcandidature = candidature::where('refoffre',$request->refoffre)->get()->toArray();
         $cvpath = Storage::putFile('public/candidatures', $request->file('cv'));
         $cvpath = str_replace('public', 'storage', $cvpath);
         $lmpath = Storage::putFile('public/candidatures', $request->file('lm'));
@@ -50,15 +50,21 @@ class CandidatureController extends Controller
             'lm'=>$lmpath
         ]);
 
-        return $oldcandidature;
+        foreach ($oldcandidature as $old) {
+           if($old['nom']==$newcandidature['nom'] &&  $old['prenom']==$newcandidature['prenom'] && $old['email']==$newcandidature['email'])
+           {
+             return response()->json([
+                "status"=>"Not allowed",
+                "Message"=>"Vous avez déjà postulé à ce poste"
+             ]);
+           }
 
-        /*
+        }
         return response()->json([
             "status"=>"Sucess",
-            "newcandidature"=>$newcandidature,
-            "candidature"=>array($oldcandidature)
+            "Candidature"=>$newcandidature
         ],Response::HTTP_CREATED);
-        */
+
     }
 
     public function update(Request $request,int $id)
