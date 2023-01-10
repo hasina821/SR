@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('ref', 25);
             $table->string('pdc', 200);
             $table->boolean('urgent')->default(false);
+            $table->boolean('disponible')->default(true);
             $table->enum('domaine', ['RH', 'Finance', 'BPO', 'Dev et Reseaux', 'Relation Client']);
             $table->text('commentaire');
             $table->string('nbrePersonne');

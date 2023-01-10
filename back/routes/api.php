@@ -32,6 +32,7 @@ Route::controller(CandidatureController::class)->group(function() {
 Route::controller(OfferController::class)->group(function() {
     Route::get('offers', 'getAll');
     Route::get('offer/{id}', 'getOne');
+    Route::get('offercandidature/{ref}', 'getoffercandidature');
     Route::post('offer', 'save');
     Route::put('offer/update/{id}','update');
     Route::delete('offer/delete/{id}','destroy');

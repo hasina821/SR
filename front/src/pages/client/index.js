@@ -17,7 +17,7 @@ import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
 import UserDropdown from "../../components/dropdown/userDropDown"
 import { useSelector } from "react-redux";
-import { FetchOffre } from "../../toolkit/offres";
+import { FetchOffre, GetAllMovies } from "../../toolkit/offres";
 import { useDispatch } from "react-redux";
 import PostCardModal from '../../components/Modal/PostCardModal';
 
@@ -100,11 +100,11 @@ export const StyledTitle =styled('p')({
   })
 
 export default function ClientHome(){
-    let Offre = useSelector((state)=>state.offres.offres.offers)
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(FetchOffre())
-    },[])
+        dispatch(FetchOffre)
+    },[dispatch])
+    let Offre = useSelector(GetAllMovies())
     console.log(Offre);
     const menu = [
         {
@@ -168,8 +168,6 @@ export default function ClientHome(){
       setIsOpen(false)
     }
     const imageLink = "https://mediahttps://www.codeur.com/blog/wp-content/uploads/2018/12/codeur-developpeur-web.jpg.gettyimages.com/id/1176475543/fr/vectoriel/sc%C3%A8ne-de-for%C3%AAt-avec-laurore.jpg?s=612x612&w=gi&k=20&c=kVx724HVFcIP_SuCgZRAOgrxpOUbIouE7YUMJqk50JE=";
-  
-    {/*const path = "/kanban/" + menu.id*/}
     
     return(
         <>

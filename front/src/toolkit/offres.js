@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const backUrl = "http://127.0.0.1:8000/api";
+const backUrl = "http://127.0.0.1:8000/api/offers";
 
-export const FetchOffre = createAsyncThunk('fetch/offre',async()=>{
-        const res = await axios.get(`${backUrl}/offers`)
-        return res.data;
+export const FetchOffre = createAsyncThunk('fetch/offre',async () =>{
+    return await fetch(backUrl).then(
+        (res) => res.json()
+    )
 })
 
 const initialState = {
@@ -30,4 +31,7 @@ export const  OffreSlice=createSlice({
         }
     }
 })
+
+
+export const GetAllMovies = (state)=>state.offres.offres.offers;
 

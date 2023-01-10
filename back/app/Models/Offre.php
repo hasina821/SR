@@ -10,6 +10,6 @@ class Offre extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom', 'ref', 'pdc', 'urgent', 'domaine', 'commentaire', 'nbrePersonne'
+        'nom', 'ref', 'pdc', 'urgent','disponible', 'domaine', 'commentaire', 'nbrePersonne'
     ];
 }
