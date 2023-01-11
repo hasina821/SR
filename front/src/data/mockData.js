@@ -39,7 +39,6 @@ export const mockDataTeam = [
   {
     id: 1,
     nom: "Developpeur",
-    Nb_de_postulants: 180,
     Date_de_creation: "12-12-2022",
     Disponibilté: "OUI",
     Action: "admin",
@@ -47,7 +46,6 @@ export const mockDataTeam = [
   {
     id: 2,
     nom: "Developpeur web",
-    Nb_de_postulants: 200,
     Date_de_creation: "12-12-2022",
     Disponibilté: "NON",
     Action: "admin",

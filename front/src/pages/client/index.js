@@ -146,10 +146,10 @@ export default function ClientHome(){
                                 >
                                 suivez votre {" "}
                                 </span>
-                                candudature facilement 
+                                candidature facilement 
                                 </h1>
                                 <p class="pt-2 max-w-lg text-xl tracking-wide leading-relaxed text-gray-300">
-                                Un outil simple et efficace pour mettre en valeur vos competences.
+                                Un outil simple et efficace pour mettre en valeur vos compétences.
                                 </p>
                                 <div class="flex gap-x-6 items-center pt-12">
                                 <button
@@ -184,17 +184,17 @@ export default function ClientHome(){
                 <div id="offre" class="relative">
                 {Offre&&(
                 <Grid container style={{marginTop: "50px"}}>
-                <Grid item xs={2} lg={2} md={2}>
+                    <Grid item xs={2} lg={2} md={2}>
 
-                </Grid>
+                    </Grid>
                     
                     {Offre.map((offre)=>(
-                        <PostModal key={offre.id} nom={offre.nom} urgent={offre.urgent} pdc={offre.pdc}/>
+                        <PostModal key={offre.id} nom={offre.nom} urgent={offre.urgent} pdc={offre.pdc} refe={offre.ref}/>
                     ))}
                     
-                <Grid item xs={3} lg={3} md={3}>
+                    <Grid item xs={3} lg={3} md={3}>
 
-                </Grid>
+                    </Grid>
                 </Grid>
                 )}
                 </div>

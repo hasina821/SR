@@ -110,7 +110,7 @@ const PostCard  = styled(Box)({
     }
   }));
 
-export default function PostModal ({nom,urgent,pdc}) {
+export default function PostModal ({nom,urgent,pdc,refe}) {
   const classes = useStyles();
   const [isOpen, setIsOpen] =  useState(false)
     
@@ -158,7 +158,7 @@ export default function PostModal ({nom,urgent,pdc}) {
                                                                             <StyledButton 
                                                                                         variant='contained'   
                                                                                 >
-                                                                                <Link to="/addpostclient">
+                                                                                <Link to={`/addpostclient/${refe}/${nom}`}>
                                                                                         <Styleddivone>
                                                                                                 Postuler
                                                                                         </Styleddivone>

@@ -1,19 +1,27 @@
+import {useEffect} from "react";
 import { Box, Grid, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../data/mockData";
 import Header from "../../components/cards/stats/Header";
 import { Color } from "../../components/palette/color";
-import DeleteIcon from '@mui/icons-material/Delete';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DoneIcon from '@mui/icons-material/Done';
 import { Link } from "react-router-dom";
 import {Button} from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
+import { useSelector,useDispatch} from "react-redux";
+import { FetchOffre } from "../../toolkit/offres";
+import { useNavigate } from "react-router-dom";
 
 const Offres = () => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+     dispatch(FetchOffre())
+  },[dispatch])
+  let Offre = useSelector((state)=>state.offres.offres.offers)
+  console.log(Offre);
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -23,20 +31,18 @@ const Offres = () => {
       cellClassName: "name-column--cell",
     },
     {
-      field: "Nb_de_postulants",
-      headerName: "Nb_de_postulants",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "created_at",
-      headerName: "created_at",
+      field: "ref",
+      headerName: "Réference",
       flex: 1,
     },
     {
-      field: "Disponibilté",
+      field: "disponible",
       headerName: "Disponibilté",
+      flex: 1,
+    },
+    {
+      field: "domaine",
+      headerName: "Domaine",
       flex: 1,
     },
     {
@@ -48,15 +54,7 @@ const Offres = () => {
           <>
             <Grid container>
               <Grid item xs={4} lg={4}>
-                <Link to="/admin/post">
-                  <DoneIcon style={{color:'white',cursor:'pointer'}}/>
-                </Link>
-              </Grid>
-              <Grid item xs={4} lg={4}>
-                <ModeEditIcon style={{color:"#ff0",cursor:'pointer'}}/>
-              </Grid>
-              <Grid item xs={4} lg={4}>
-                <DeleteIcon style={{color:"#f00",cursor:'pointer'}}/>
+                <DoneIcon style={{color:'white',cursor:'pointer'}}/>
               </Grid>
             </Grid>
           </>
@@ -64,12 +62,14 @@ const Offres = () => {
       }
     },
   ];
+  const handleRowClick  = (params) => {
+    navigate(`/admin/post/${params.row.ref}/${params.row.nom}`);
+  };
 
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="OFFRE" subtitle="Gérer les offres" />
-
         <Box>
           <Button
             sx={{
@@ -116,7 +116,7 @@ const Offres = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid onRowClick={handleRowClick} checkboxSelection rows={Offre} columns={columns} />
       </Box>
     </Box>
   );

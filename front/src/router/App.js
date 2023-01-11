@@ -20,7 +20,7 @@ function AppRouter() {
         <Route path="/signup"  element={<Signup/>} exact={true} />
         <Route path="/clienthome"  element={<ClientHome/>} exact={true} />
         <Route path="/suivi"  element={<Suivi/>} exact={true} />
-        <Route path="/addpostclient"  element={<Addpostclient/>} exact={true} />
+        <Route path="/addpostclient/:refe/:nom"  element={<Addpostclient/>} exact={true} />
         <Route path="/pdf"  element={<Pdf/>} exact={true} />
     </Routes>
     </>

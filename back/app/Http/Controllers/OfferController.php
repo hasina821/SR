@@ -99,5 +99,4 @@ class OfferController extends Controller
         ],Response::HTTP_ACCEPTED);
 
     }
-
 }
