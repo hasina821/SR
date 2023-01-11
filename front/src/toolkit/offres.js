@@ -32,7 +32,7 @@ export const FetchOfferCandidate = createAsyncThunk('fetch/offercandiate',async(
  })
 
 export const FetchCandidaturebyref = createAsyncThunk('fetch/cand',async(refe)=>{
-    return await fetch(`${backUrl}/candidature/byref/001`).then(
+    return await fetch(`${backUrl}/candidature/byref/${refe}`).then(
         (res) => res.json()
     )
 })
@@ -75,7 +75,7 @@ export const  OffreSlice=createSlice({
                 {id:`${3}`,title:"Terminé",allowcreatecard:false, save: "Validé", isDropDisabled: false, cards:[
                 ]}
             ]
-            const data = payload;
+            const data = payload.Candidature;
             for(let i = 0; i<data.length; i++ ){
                 if(data[i].id_colonne === 1){
                     initialCandidatures[0].cards.push(data[i]);

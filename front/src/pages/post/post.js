@@ -4,7 +4,7 @@ import {Grid,Button} from "@mui/material"
 import { DragDropContext } from "react-beautiful-dnd"
 import {useSelector,useDispatch} from "react-redux"
 import { moveCard } from "../../toolkit/post"
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 import { FetchCandidaturebyref } from "../../toolkit/offres";
 
 
@@ -12,7 +12,7 @@ export default function Post(){
      let {refe,nom}=useParams();
      const dispatch=useDispatch()
      const post=useSelector(state=>state.post);
-     const candits = useSelector(state=>state.offres);
+     const candits = useSelector(state=>state.offres.candidatures);
      const onDragEnd = (result) =>{
           const { destination, source, draggableId} = result;
            
@@ -50,7 +50,7 @@ export default function Post(){
                     <div>
                          <h1>{post.title}</h1>
                          <Grid container>
-                              {post.map(list=>(
+                              {candits.map(list=>(
                               <Grid item key={list.id} lg={3}>
                                    <PostList listId={list.id} cards={list.cards} title={list.title} allowcreatecard={list.allowcreatecard}/>
                               </Grid>

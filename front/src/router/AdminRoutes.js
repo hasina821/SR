@@ -33,7 +33,7 @@ export default function AdminRoutes () {
                 <Routes>
                     <Route path="/" element={<Offres />} />
                     <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/post/:ref/:nom" element={<Post />} />
+                    <Route path="/post/:refe/:nom" element={<Post />} />
                     <Route path="/dossiers" element={<Dossiers />} />
                     <Route path="/invoices" element={<Invoices />} />
                     <Route path="/form" element={<Form />} />

@@ -53,9 +53,8 @@ const PostCard = ({card,id,index}) =>{
                               <CardContent>
                                    <Stack direction="row" spacing={2} style={{alignItems:"center"}}> 
                                         <Avatar  src="https://avatars.githubusercontent.com/u/80751503?s=96&v=4"></Avatar>
-                                        <Typography onClick={handleOpen} style={{color:"#000",fontWeight:'bold'}}>{card.description}</Typography>
+                                        <Typography onClick={handleOpen} style={{color:"#000",fontWeight:'bold'}}>{card.nom}</Typography>
                                   </Stack>
-                                  
                               </CardContent>
                               <Grid container style={{color:"#000",marginBottom:'2px'}}>
                                         <Grid item xs={2} lg={2}>
@@ -69,8 +68,7 @@ const PostCard = ({card,id,index}) =>{
                                         </Grid>
                                         <Grid item xs={4} lg={4}>
                                              <Stack direction="row" style={{alignItems:"center"}}>
-                                                  <MessageIcon/>
-                                                  <h4>3</h4>
+                                                  
                                              </Stack>
                                         </Grid>
                                         <Grid item xs={2} lg={2}>
