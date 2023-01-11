@@ -131,9 +131,12 @@ class CandidatureController extends Controller
     {
         $candidature = candidature::find($id);
         $candidature->id_colonne = $request->new_id_colonne;
+        $candidature->save();
+        $candidature->id_colonne = $request->new_id_colonne;
         return response()->json([
             "Status"=>"Sucess",
             "candidature"=> $candidature
         ],Response::HTTP_ACCEPTED);
+
     }
 }

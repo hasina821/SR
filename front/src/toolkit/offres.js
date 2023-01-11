@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import produce from "immer"
 
 const backUrl = "http://127.0.0.1:8000/api";
 
@@ -58,8 +59,8 @@ export const  OffreSlice=createSlice({
             state.candidature = [];
         },
         changeColonneCandidature:(state,{payload})=>{
-            let candidatures =action.payload.candidature, id_colonne_source = action.payload.source, 
-            id_colonne_dest = action.payload.destination , id_candidature = parseInt(action.payload.id_label);
+            let candidatures =payload.candidature, id_colonne_source = payload.source, 
+            id_colonne_dest = payload.destination , id_candidature = parseInt(payload.id_label);
             let candidature = candidatures[id_colonne_source].cards.find(element => element.id === id_candidature);
             let new_source_cards = candidatures[id_colonne_source].cards.filter(element => element.id !== id_candidature);
             let newCandidatures = produce(candidatures, (draft) => {
@@ -67,6 +68,9 @@ export const  OffreSlice=createSlice({
                 draft[id_colonne_dest].cards.push(candidature)
             })
             state.candidature = newCandidatures;
+        },
+        setCandidatures:(state,{payload})=>{
+            state.candidatures = payload;
         }
     },
     extraReducers:{
@@ -142,4 +146,4 @@ export const  OffreSlice=createSlice({
     }
 })
 
-
+export const { setCandidatures,setIdCandidature, reinitialiseCandidature, changeColonneCandidature} = OffreSlice.actions;

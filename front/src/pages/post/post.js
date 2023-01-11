@@ -6,7 +6,14 @@ import {useSelector,useDispatch} from "react-redux"
 import { moveCard } from "../../toolkit/post"
 import { useParams } from "react-router-dom";
 import { FetchCandidaturebyref } from "../../toolkit/offres";
+import { setIdCandidature } from "../../toolkit/offres"
+import { setCandidatures } from "../../toolkit/offres"
+import axios from "axios"
+import produce from "immer"
 
+
+
+const backURL="http://localhost:8000/api";
 
 export default function Post(){
      let {refe,nom}=useParams();
@@ -18,20 +25,18 @@ export default function Post(){
           if (!destination) {
                return;
           }
-          let id_colonne_source = source.droppableId, id_colonne_dest = parseInt(destination.droppableId) , id_label = parseInt(draggableId);
-          let label = candits[id_colonne_source].cards.find(element => element.id === id_label);
+          let id_colonne_source = source.droppableId, id_colonne_dest = parseInt(destination.droppableId) , id_candidature = parseInt(draggableId);
+          let candidature = candits[id_colonne_source].cards.find(element => element.id === id_candidature);
           try {
-               axios.put(initialState.url +"label/"+id_label+"/", {
-                    "colonneIdId": id_colonne_dest+1,
-                    "name": label.name
+               axios.put(`${backURL}/candidature/update/id_colonne/${id_candidature}/`, {
+                    "new_id_colonne": id_colonne_dest+1,
                })
-               
-               let new_source_cards = candits[id_colonne_source].cards.filter(element => element.id !== id_label);
+               let new_source_cards = candits[id_colonne_source].cards.filter(element => element.id !== id_candidature);
                let newLabels = produce(candits, (draft) => {
                    draft[id_colonne_source].cards = new_source_cards;
-                   draft[id_colonne_dest].cards.push(label)
+                   draft[id_colonne_dest].cards.push(candidature)
                })
-               dispatch(setLabels(newLabels));
+               dispatch(setCandidatures(newLabels));
           } catch (error) {
                console.log(error)
           }
