@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(CandidatureController::class)->group(function() {
     Route::get('candidatures', 'getAll');
     Route::get('candidature/{id}', 'getOne');
+    Route::get('candidature/byref/{ref}', 'getallwithref');
     Route::post('candidature', 'save');
     Route::put('candidature/update/{id}','update');
     Route::delete('candidature/delete/{id}','delete');

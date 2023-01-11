@@ -32,6 +32,21 @@ class CandidatureController extends Controller
             "Candidature"=>$candidature
         ],Response::HTTP_ACCEPTED);
     }
+    public function getallwithref(Request $request,string $ref)
+    {
+        $candidatures = DB::table('candidatures')->where('refoffre',$ref)->get();
+
+        if(!$candidatures){
+            return response()->json([
+                "status"=>"Not found",
+                "message"=>"Resource not found"
+            ],Response::HTTP_NOT_FOUND);
+        }
+        return response()->json([
+            "status"=>"Sucess",
+            "Candidature"=>$candidatures
+        ],Response::HTTP_ACCEPTED);
+    }
     public function save(Request $request)
     {
         $oldcandidature = candidature::where('refoffre',$request->refoffre)->get()->toArray();
@@ -113,4 +128,5 @@ class CandidatureController extends Controller
             'post' => $candidature
         ]);
     }
+
 }
