@@ -92,4 +92,27 @@ class CandidatureController extends Controller
         ]);
 
     }
+    public function incrementcolonne_id(Request $request,int $id)
+    {
+        $candidature = candidature::find($id);
+        $candidature->id_colonne++;
+        $candidature->save();
+
+        return response()->json([
+            'status' => 'success',
+            'post' => $candidature
+        ]);
+    }
+
+    public function decrementcolonne_id(int $id)
+    {
+        $candidature = candidature::find($id);
+        $candidature->id_colonne--;
+        $candidature->save();
+
+        return response()->json([
+            'status' => 'success',
+            'post' => $candidature
+        ]);
+    }
 }

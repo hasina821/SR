@@ -27,6 +27,8 @@ Route::controller(CandidatureController::class)->group(function() {
     Route::post('candidature', 'save');
     Route::put('candidature/update/{id}','update');
     Route::delete('candidature/delete/{id}','delete');
+    Route::put('candidature/increment/{id}','incrementcolonne_id');
+    Route::put('candidature/decrement/{id}','decrementcolonne_id');
 });
 
 Route::controller(OfferController::class)->group(function() {

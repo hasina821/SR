@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email',50);
             $table->string('es', 50);
             $table->string('state');
+            $table->integer('id_colonne')->default(1);
             $table->string('refoffre',25);
             $table->string('cv', 200);
             $table->string('lm', 200);
