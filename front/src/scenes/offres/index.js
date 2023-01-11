@@ -17,11 +17,13 @@ const Offres = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
-  useEffect(()=>{
-     dispatch(FetchOffre())
-  },[dispatch])
-  let Offre = useSelector((state)=>state.offres.offres.offers)
-  console.log(Offre);
+    useEffect(()=>{
+       dispatch(FetchOffre());
+    },[dispatch])
+    
+    let Offre = useSelector((state)=>state.offres.offres.offers)
+    console.log(Offre);
+  
   const columns = [
     { field: "id", headerName: "ID" },
     {
@@ -82,7 +84,7 @@ const Offres = () => {
           >
             <Link to="/admin/addpost">
            <AddIcon sx={{ mr: "10px" }}/>
-           Nouveau offre
+            Nouveau offre
            </Link>
           </Button>
         </Box>
@@ -116,7 +118,9 @@ const Offres = () => {
           },
         }}
       >
+        
         <DataGrid onRowClick={handleRowClick} checkboxSelection rows={Offre} columns={columns} />
+        
       </Box>
     </Box>
   );

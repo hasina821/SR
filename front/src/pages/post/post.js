@@ -4,9 +4,11 @@ import {Grid,Button} from "@mui/material"
 import { DragDropContext } from "react-beautiful-dnd"
 import {useSelector,useDispatch} from "react-redux"
 import { moveCard } from "../../toolkit/post"
+import { useParams } from "react-router-dom"
 
 
 export default function Post(){
+     let {refe,nom}=useParams();
      const dispatch=useDispatch()
      const post=useSelector(state=>state.post);
      const onDragEnd = (result) =>{
@@ -27,19 +29,13 @@ export default function Post(){
      return(
           <Fragment>
                <h1 className="ml-4 text-2xl font-semibold text-white p-4 rounded-2xl">
-                    Data analist
+                    {nom}
                </h1>
                <Grid container>
-                    <Grid item xs={1} lg={1} md={1}>
-                         
+                    <Grid style={{marginLeft:"1%"}} item xs={3/2} lg={3/2} md={3/2}>
+                         <Button variant="contained">Postulants <span className="text-yellow-500 ml-2"> (10) </span></Button>
                     </Grid>
-                    <Grid item xs={3/2} lg={3/2} md={3/2}>
-                         <Button variant="contained">Contained</Button>
-                    </Grid>
-                    <Grid item xs={3/2} lg={3/2} md={3/2}>
-                         <Button variant="contained">Contained</Button>
-                    </Grid>
-                    <Grid item xs={8} lg={8} md={8}>
+                    <Grid item xs={10} lg={10} md={10}>
 
                     </Grid>
                </Grid>

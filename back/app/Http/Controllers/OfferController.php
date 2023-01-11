@@ -66,7 +66,6 @@ class OfferController extends Controller
                 "message"=>"Resource not found"
             ],Response::HTTP_NOT_FOUND);
         }
-
         $offer->update($request->all());
         return response()->json([
             "status"=>"Sucess",
@@ -92,10 +91,12 @@ class OfferController extends Controller
         }
 
         $candidature=candidature::where('refoffre',$ref)->get()->toArray();
+        $nombredecandidat = count($candidature);
         return response()->json([
             "status"=>"Sucess",
             "offre"=> $offre,
-            "candidature"=> $candidature
+            "candidature"=> $candidature,
+            "nombrecandidature"=>$nombredecandidat
         ],Response::HTTP_ACCEPTED);
 
     }
