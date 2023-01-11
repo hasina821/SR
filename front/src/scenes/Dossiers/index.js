@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -8,37 +9,45 @@ import { Color } from "../../components/palette/color";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DoneIcon from '@mui/icons-material/Done';
+import { FetchCandidature } from "../../toolkit/offres";
+import { useSelector,useDispatch } from "react-redux";
 
 
 const Dossiers = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const dispatch = useDispatch();
+  const candidatures = useSelector((state)=>state.offres.candidature.candidatures)
+  useEffect(()=>{
+    dispatch(FetchCandidature())
+  },[dispatch])
+  console.log(candidatures);
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "Reference", headerName: "Reference" },
+    { field: "created_at", headerName: "Date d'envoi" },
     {
-      field: "Nom",
+      field: "nom",
       headerName: "Nom",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "Poste_demandé",
-      headerName: "Poste_demandé",
-      type: "number",
+      field: "prenom",
+      headerName: "Prenom",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "es",
+      headerName: "Ecole",
+      flex: 1,
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "refoffre",
+      headerName: "Réference de l'offre",
       headerAlign: "left",
       align: "left",
-    },
-    {
-      field: "Date_de_depôt",
-      headerName: "Date_de_depôt",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
     },
     {
       field: "Action",
@@ -50,9 +59,6 @@ const Dossiers = () => {
             <Grid container>
               <Grid item xs={6} lg={6}>
                 <DoneIcon style={{color:'white',cursor:'pointer'}}/>
-              </Grid>
-              <Grid item xs={6} lg={6}>
-                <DeleteIcon style={{color:"#f00",cursor:'pointer'}}/>
               </Grid>
             </Grid>
           </>
@@ -100,7 +106,7 @@ const Dossiers = () => {
         }}
       >
         <DataGrid
-          rows={mockDataContacts}
+          rows={candidatures}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />

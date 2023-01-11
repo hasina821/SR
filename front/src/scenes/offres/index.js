@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect,useState} from "react";
 import { Box, Grid, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -12,14 +12,17 @@ import { useSelector,useDispatch} from "react-redux";
 import { FetchOffre } from "../../toolkit/offres";
 import { useNavigate } from "react-router-dom";
 
+const backURL = "http://127.0.0.1:8000/api";
 const Offres = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
-    useEffect(()=>{
+  const [Offres,setOffres]=useState([])
+    useEffect(async()=>{
        dispatch(FetchOffre());
     },[dispatch])
+    
     
     let Offre = useSelector((state)=>state.offres.offres.offers)
     console.log(Offre);

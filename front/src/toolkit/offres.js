@@ -89,7 +89,6 @@ export const  OffreSlice=createSlice({
         },
         [FetchCandidaturebyref.fulfilled]:(state,{payload})=>{
             state.status="Sucess"
-            
             let initialCandidatures=[
                 {id:`${0}`,title:"Nouveau",allowcreatecard:true, save: "Validé", isDropDisabled: false, cards:[
                 ]},
@@ -143,6 +142,16 @@ export const  OffreSlice=createSlice({
         [FetchOfferCandidate.rejected]:(state,{payload})=>{
             state.status="rejected"
         },
+        [FetchCandidature.pending]:(state,{payload})=>{
+            state.status="loading"
+        },
+        [FetchCandidature.fulfilled]:(state,{payload})=>{
+            state.status="Success"
+            state.candidature = payload
+        },
+        [FetchCandidature.rejected]:(state,{payload})=>{
+            state.status="rejected"
+        }
     }
 })
 
