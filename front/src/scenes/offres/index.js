@@ -10,15 +10,10 @@ import DoneIcon from '@mui/icons-material/Done';
 import { Link } from "react-router-dom";
 import {Button} from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
-import { useSelector,useDispatch } from "react-redux";
-import {useEffect} from "react";
-import {FetchOffre, GetAllMovies} from "../../toolkit/offres";
 
 const Offres = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const dispatch = useDispatch();
-  let Offre = useSelector(GetAllMovies())
   const columns = [
     { field: "id", headerName: "ID" },
     {

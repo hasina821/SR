@@ -1,8 +1,6 @@
 import {useEffect,useState} from "react";
-import {Box, Typography,Modal} from '@mui/material';
+import {Box, Typography,Modal,Container, Grid,Stack} from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import {styled} from "@mui/styles";
 import PlayIcon from "../../components/logo/play";
 import SpeakerPhoneIcon from "../../components/logo/speaker";
@@ -10,86 +8,27 @@ import ShoppingBagIcon from "../../components/logo/shopping";
 import ChipIcon from "../../components/logo/Chip";
 import ChartIcon from "../../components/logo/chart";
 import { Color } from "../../components/palette/color";
-import CardPost from "../../components/cards/stats/cardPost";
 import { Link } from "react-router-dom";
 import {Link as Lank} from "react-scroll";
 import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
 import UserDropdown from "../../components/dropdown/userDropDown"
 import { useSelector } from "react-redux";
-import { FetchOffre, GetAllMovies } from "../../toolkit/offres";
+import { FetchOffre} from "../../toolkit/offres";
 import { useDispatch } from "react-redux";
-import PostCardModal from '../../components/Modal/PostCardModal';
 
-const MystyledBox  = styled(Box)({
-    width:'40%',
-    overflowY:'scroll',
-    background:'#fff',
-    borderRadius:5,
-    border:'none',
-    padding:'2%',
-    height:"600px"
+import PostModal from "../../components/Modal/PostModal";
 
+
+export const Styleddivone=styled('h4')({
+    textAlign:'center',
+    color:'white',
+    fontWeight:"bold",
+    fontSize:"18px"
 })
-
-const useStyles = makeStyles((theme)=>({
-  root: {
-   height:'90px',
-   width:'210px',
-   fontFamily:'Arial',
-   padding:'5px 5px 5px 5px',
-   borderRadius:'5px',
-   margin:'10px 0px 10px 0px',
-   cursor:'pointer',
-   fontSize:'16px',
-   transition:'all 0.8s',
-   '&:hover':{
-        boxShadow: '0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    },
-    "& a":{
-      textDecoration:'none'
-    }
-  },
-  model:{
-    width:'100px',
-    height:'22px',
-    background:'#ED4C67',
-    borderRadius:'5px',
-    color:"white",
-    textAlign:'center',
-    fontWeight:'bold',
-    '& .p-model':{
-        fontSize:'11px',
-        color:'#fff'
-    }
-  },
-  model2:{
-    width:'100px',
-    height:'22px',
-    color:"white",
-    background:'#006266',
-    borderRadius:'5px',
-    textAlign:'center',
-    fontWeight:'bold',
-    '& .p-model':{
-        fontSize:'11px',
-        color:'#fff'
-    }
-  },
-  title:{
-    display:'flex',
-    flexWrap:'wrap',
-    textDecoration:'none',
-    color:'#000',
-    overflow:'auto',
-    marginTop:'15px',
-    '& .p-title':{
-          fontWeight:'bold',
-          
-      }
-  }
-}));
-
+export const StyleddivTwo=styled('div')({
+    align:'left'
+})
 
 export const StyledTitle =styled('p')({
     textAlign:'center',
@@ -102,9 +41,9 @@ export const StyledTitle =styled('p')({
 export default function ClientHome(){
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(FetchOffre)
+       dispatch(FetchOffre())
     },[dispatch])
-    let Offre = useSelector(GetAllMovies())
+    let Offre = useSelector((state)=>state.offres.offres.offers)
     console.log(Offre);
     const menu = [
         {
@@ -157,16 +96,8 @@ export default function ClientHome(){
     },
     ];
 
-    const classes = useStyles();
-    const [isOpen, setIsOpen] =  useState(false)
-    
-    const handleOpen = () =>{
-      setIsOpen(true)
-    }
-  
-    const handleClose = () =>{
-      setIsOpen(false)
-    }
+   
+   
     const imageLink = "https://mediahttps://www.codeur.com/blog/wp-content/uploads/2018/12/codeur-developpeur-web.jpg.gettyimages.com/id/1176475543/fr/vectoriel/sc%C3%A8ne-de-for%C3%AAt-avec-laurore.jpg?s=612x612&w=gi&k=20&c=kVx724HVFcIP_SuCgZRAOgrxpOUbIouE7YUMJqk50JE=";
     
     return(
@@ -251,67 +182,23 @@ export default function ClientHome(){
                                 Nos offres
                 </h1>
                 <div id="offre" class="relative">
-                {Offre.map((offre)=>(
-                <div class="relative py-16 px-8 mx-auto max-w-7xl">
-                    <div
-                        class="grid grid-cols-2 gap-4 items-start py-16 w-full md:grid-cols-4 md:gap-x-8"
-                        >
-                             <Box className={classes.root}  style={{
-                                background: `url(http://127.0.0.1:8000/api/), #ddd`,
-                                backgroundSize:'cover',
-                                display:'flex',
-                                flexDirection:'row'
-                            }} >
-                                <Modal
-                                    open={isOpen}
-                                    onClose={handleClose}
-                                    sx={{
-                                        display:'flex',
-                                        alignItems:'center',
-                                        justifyContent:'center',
-                                        overflowY:'scroll',
-                                        paddingTop:'0px'
-                                    }}
-                                    >
-                                    <MystyledBox>
-                                        <PostCardModal handleClose={handleClose}/>
-                                    </MystyledBox>
-                                </Modal>
-                                <Box flex={3} >
-                                <Box className={offre.urgent=="1"?classes.model:classes.model2}>
-                                    <h6  className='text-sm'>
-                                        {offre.urgent=="1"?"Urgent":"Assez urgent"}
-                                    </h6>
-                                </Box>
-                                <Box className={classes.title}>
-                                <Typography onClick={handleOpen} variant='p' className='p-title' style={{color:"#555"}} noWrap>
-                                    {offre.nom.length > 15 ?offre.nom.slice(0,15) + "..." : offre.nom}
-                                </Typography>
-                                </Box>  
-                                </Box>
-                                <Box sx={{ flex:1}}>
-                                <IconButton 
-                                    aria-label="Modifier"  
-                                    title='Modifier'
-                                    id='update-button' 
-                                    sx={{ 
-                                    backgroundColor: '#FFFFFFB0',
-                                    '&:hover':{
-                                        backgroundColor: '#172B4D',
-                                        color:'#FFFFFFB0'
-                                    } 
-                                    }}
-                                    onClick={() => handleOpen()}
-                                >
-                                    <EditIcon id='update-icon'   fontSize='1px' />
-                                </IconButton>
-                                </Box>
-                            </Box>
-                        </div>
-                    </div>
-                ))}
+                {Offre&&(
+                <Grid container style={{marginTop: "50px"}}>
+                <Grid item xs={2} lg={2} md={2}>
+
+                </Grid>
+                    
+                    {Offre.map((offre)=>(
+                        <PostModal key={offre.id} nom={offre.nom} urgent={offre.urgent} pdc={offre.pdc}/>
+                    ))}
+                    
+                <Grid item xs={3} lg={3} md={3}>
+
+                </Grid>
+                </Grid>
+                )}
                 </div>
-                
+                 
                 <div id="contact" className="mt-64">
                     <Footer/>
                 </div>

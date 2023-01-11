@@ -33,5 +33,3 @@ export const  OffreSlice=createSlice({
 })
 
 
-export const GetAllMovies = (state)=>state.offres.offres.offers;
-

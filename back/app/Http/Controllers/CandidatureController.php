@@ -39,6 +39,15 @@ class CandidatureController extends Controller
         $cvpath = str_replace('public', 'storage', $cvpath);
         $lmpath = Storage::putFile('public/candidatures', $request->file('lm'));
         $lmpath = str_replace('public', 'storage', $lmpath);
+        foreach ($oldcandidature as $old) {
+            if($old['nom']==$request->nom &&  $old['prenom']==$request->prenom && $old['email']==$request->email)
+            {
+              return response()->json([
+                 "status"=>"Not allowed",
+                 "Message"=>"Vous avez déjà postulé à ce poste"
+              ]);
+            }
+         }
         $newcandidature=candidature::create([
             'nom'=>$request->nom,
             'prenom'=>$request->prenom,
@@ -49,17 +58,6 @@ class CandidatureController extends Controller
             'cv'=>$cvpath,
             'lm'=>$lmpath
         ]);
-
-        foreach ($oldcandidature as $old) {
-           if($old['nom']==$newcandidature['nom'] &&  $old['prenom']==$newcandidature['prenom'] && $old['email']==$newcandidature['email'])
-           {
-             return response()->json([
-                "status"=>"Not allowed",
-                "Message"=>"Vous avez déjà postulé à ce poste"
-             ]);
-           }
-
-        }
         return response()->json([
             "status"=>"Sucess",
             "Candidature"=>$newcandidature
