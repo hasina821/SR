@@ -30,6 +30,7 @@ Route::controller(CandidatureController::class)->group(function() {
     Route::delete('candidature/delete/{id}','delete');
     Route::put('candidature/increment/{id}','incrementcolonne_id');
     Route::put('candidature/decrement/{id}','decrementcolonne_id');
+    Route::put('candidature/update/id_colonne/{id}','stateupdatecandidature');
 });
 
 Route::controller(OfferController::class)->group(function() {

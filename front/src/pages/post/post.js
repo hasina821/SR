@@ -13,20 +13,28 @@ export default function Post(){
      const dispatch=useDispatch()
      const post=useSelector(state=>state.post);
      const candits = useSelector(state=>state.offres.candidatures);
-     const onDragEnd = (result) =>{
+     const onDragEnd = async (result) =>{
           const { destination, source, draggableId} = result;
-           
           if (!destination) {
-                 return;
-               }
-          dispatch(moveCard ({
-               droppableIdStart:source.droppableId,
-               droppableIdEnd:destination.droppableId,
-               droppableIndexEnd:source.index,
-               droppableIndexStart:destination.index,
-               draggableId,
-          }));
-          
+               return;
+          }
+          let id_colonne_source = source.droppableId, id_colonne_dest = parseInt(destination.droppableId) , id_label = parseInt(draggableId);
+          let label = candits[id_colonne_source].cards.find(element => element.id === id_label);
+          try {
+               axios.put(initialState.url +"label/"+id_label+"/", {
+                    "colonneIdId": id_colonne_dest+1,
+                    "name": label.name
+               })
+               
+               let new_source_cards = candits[id_colonne_source].cards.filter(element => element.id !== id_label);
+               let newLabels = produce(candits, (draft) => {
+                   draft[id_colonne_source].cards = new_source_cards;
+                   draft[id_colonne_dest].cards.push(label)
+               })
+               dispatch(setLabels(newLabels));
+          } catch (error) {
+               console.log(error)
+          }
      }
      useEffect(()=>{
           dispatch(FetchCandidaturebyref(refe));

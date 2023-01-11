@@ -41,13 +41,34 @@ const initialState = {
     status:null,
     offres:[],
     candidatures:[],
+    candidature:[],
+    id_candidature:null,
+    nameCandidature:null,
     offercandidature:[],
 }   
 
 export const  OffreSlice=createSlice({
     name:"offres",
     initialState,
-    reducers:{},
+    reducers:{
+        setIdCandidature:(state,{payload})=>{
+            state.id_candidature = payload;
+        },
+        reinitialiseCandidature:(state,{payload})=>{
+            state.candidature = [];
+        },
+        changeColonneCandidature:(state,{payload})=>{
+            let candidatures =action.payload.candidature, id_colonne_source = action.payload.source, 
+            id_colonne_dest = action.payload.destination , id_candidature = parseInt(action.payload.id_label);
+            let candidature = candidatures[id_colonne_source].cards.find(element => element.id === id_candidature);
+            let new_source_cards = candidatures[id_colonne_source].cards.filter(element => element.id !== id_candidature);
+            let newCandidatures = produce(candidatures, (draft) => {
+                draft[id_colonne_source].cards = new_source_cards;
+                draft[id_colonne_dest].cards.push(candidature)
+            })
+            state.candidature = newCandidatures;
+        }
+    },
     extraReducers:{
         [FetchOffre.pending]:(state,{payload})=>{
             state.status="loading";

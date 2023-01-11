@@ -96,6 +96,7 @@ class CandidatureController extends Controller
             "candidature"=>$candidature
         ],Response::HTTP_ACCEPTED);
     }
+
     public function delete($id)
     {
         candidature::destroy($id);
@@ -103,17 +104,16 @@ class CandidatureController extends Controller
             "status"=>"Sucess",
             "Message"=>"candidature removed successfully"
         ]);
-
     }
+
     public function incrementcolonne_id(Request $request,int $id)
     {
         $candidature = candidature::find($id);
         $candidature->id_colonne++;
         $candidature->save();
-
         return response()->json([
             'status' => 'success',
-            'post' => $candidature
+            'candidature' => $candidature
         ]);
     }
 
@@ -122,11 +122,18 @@ class CandidatureController extends Controller
         $candidature = candidature::find($id);
         $candidature->id_colonne--;
         $candidature->save();
-
         return response()->json([
             'status' => 'success',
-            'post' => $candidature
+            'candidature' => $candidature
         ]);
     }
-
+    public function stateupdatecandidature(Request $request,int $id)
+    {
+        $candidature = candidature::find($id);
+        $candidature->id_colonne = $request->new_id_colonne;
+        return response()->json([
+            "Status"=>"Sucess",
+            "candidature"=> $candidature
+        ],Response::HTTP_ACCEPTED);
+    }
 }
