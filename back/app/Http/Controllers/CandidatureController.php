@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -20,7 +19,6 @@ class CandidatureController extends Controller
     public function getOne(int $id)
     {
         $candidature = DB::table('candidatures')->where('id',$id)->first();
-
         if(!$candidature){
             return response()->json([
                 "status"=>"Not found",
@@ -35,7 +33,6 @@ class CandidatureController extends Controller
     public function getallwithref(Request $request,string $ref)
     {
         $candidatures = DB::table('candidatures')->where('refoffre',$ref)->get();
-
         if(!$candidatures){
             return response()->json([
                 "status"=>"Not found",
@@ -54,6 +51,9 @@ class CandidatureController extends Controller
         $cvpath = str_replace('public', 'storage', $cvpath);
         $lmpath = Storage::putFile('public/candidatures', $request->file('lm'));
         $lmpath = str_replace('public', 'storage', $lmpath);
+
+        return $request->file('cv');
+        /*
         foreach ($oldcandidature as $old) {
             if($old['nom']==$request->nom &&  $old['prenom']==$request->prenom && $old['email']==$request->email)
             {
@@ -78,6 +78,7 @@ class CandidatureController extends Controller
             "Candidature"=>$newcandidature
         ],Response::HTTP_CREATED);
 
+*/
     }
 
     public function update(Request $request,int $id)

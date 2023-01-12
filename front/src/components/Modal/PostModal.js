@@ -1,14 +1,13 @@
 import React,{useState} from "react"
 import {Modal,Box,Stack,Container } from "@mui/material"
 import {styled,makeStyles} from "@mui/styles"
-import { Height } from "@mui/icons-material"
 import { Typography,Grid } from "@mui/material"
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import StyledButton from "./StyledButton";
 import { Color } from "../palette/color";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const MystyledBox  = styled(Box)({
   width:'40%',

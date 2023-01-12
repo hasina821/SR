@@ -105,14 +105,17 @@ const Dossiers = () => {
           },
         }}
       >
+        {candidatures&&(
         <DataGrid
           rows={candidatures}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
+        )}
       </Box>
     </Box>
   );
 };
 
 export default Dossiers;
+

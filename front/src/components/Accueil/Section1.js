@@ -58,7 +58,8 @@ const useStyles=makeStyles({
     },
     title:{
         fontSize:'40px',
-        fontWeight:'600',
+        fontWeight:'800',
+        color:"#333"
     },
     contain:{
         alignContent:'center',
@@ -101,9 +102,9 @@ const Section1 = () =>{
                     <Grid container className={classes.contain}>
                         <Grid  item xs={12} lg={7} xl={7} md={7} sm={7} >
                             <Box className={classes.Box1}>
-                                <h1 className={classes.title}>Smart-recrute vous facilite les taches.</h1>
+                                <h1 className={classes.title}>Smart-recrute vous facilite les tâches.</h1>
                                 <StyledToposub>
-                                Collaborez, gérez votre recrutement et fais confiance à Smart-recrute,on va vous facilite vos tâches.
+                                Collaborez, gérez votre recrutement et fais confiance à Smart-recrute.
                                 </StyledToposub>
                                 <Grid container>
                                     <Grid item xs={12} lg={8} xl={8} md={8} sm={8}>

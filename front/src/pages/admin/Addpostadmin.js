@@ -129,9 +129,6 @@ export default function AddpostAdmin(){
                     </div>
                     </div>
                 </form>
-                    <div class="p-4 mb-4 text-sm text-white bg-green-600 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-                    <span class="font-medium">Success alert!</span> Votre offre à éte ajouté avec succèss 
-                    </div>
                 </div>
             </div>
         </>

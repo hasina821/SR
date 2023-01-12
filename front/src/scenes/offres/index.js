@@ -12,20 +12,17 @@ import { useSelector,useDispatch} from "react-redux";
 import { FetchOffre } from "../../toolkit/offres";
 import { useNavigate } from "react-router-dom";
 
-const backURL = "http://127.0.0.1:8000/api";
-const Offres = () => {
-  const navigate = useNavigate();
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const dispatch = useDispatch();
-  const [Offres,setOffres]=useState([])
-    useEffect(async()=>{
-       dispatch(FetchOffre());
+export default function Offres () {
+    const dispatch = useDispatch();
+    useEffect(()=>{
+       dispatch(FetchOffre())
     },[dispatch])
-    
-    
     let Offre = useSelector((state)=>state.offres.offres.offers)
     console.log(Offre);
+
+    const navigate = useNavigate();
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   
   const columns = [
     { field: "id", headerName: "ID" },
@@ -121,12 +118,11 @@ const Offres = () => {
           },
         }}
       >
-        
+        {Offre&&(
         <DataGrid onRowClick={handleRowClick} checkboxSelection rows={Offre} columns={columns} />
-        
+        )}
       </Box>
     </Box>
   );
 };
 
-export default Offres;

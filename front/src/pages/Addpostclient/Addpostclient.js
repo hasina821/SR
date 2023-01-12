@@ -47,11 +47,13 @@ export default function Addpostclient(){
             "cv": data.cv[0],
             "lm": data.lm[0],
         })
+        
         .then(res => {
             if(res.data) navigate("/clientHome");
         }).catch((err)=>{
             console.log(err.message);
         })
+        
     }
     return(
         <>  

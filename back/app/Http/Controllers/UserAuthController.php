@@ -20,7 +20,6 @@ class UserAuthController extends Controller
     public function login(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-
         if(!Hash::check($request->password, $user->password)) {
 
             return response()->json([
@@ -28,7 +27,6 @@ class UserAuthController extends Controller
                 'message' => 'Email ou mot de passe erroné'
             ], Response::HTTP_UNAUTHORIZED);
         }
-
         return response()->json([
             'status' => 'Success',
             'user' => $user,

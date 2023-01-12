@@ -17,8 +17,8 @@ export default function Account() {
         <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
           <input
             onChange={handleChange}
-            value={userData["username"] || ""}
-            name="username"
+            value={userData["nom"] || ""}
+            name="nom"
             placeholder="Nom"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
           />
@@ -31,10 +31,10 @@ export default function Account() {
         <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
           <input
             onChange={handleChange}
-            value={userData["password"] || ""}
-            name="password"
+            value={userData["prenom"] || ""}
+            name="prenom"
             placeholder="Prenom"
-            type="password"
+            type="text"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
           />
         </div>
@@ -46,10 +46,10 @@ export default function Account() {
         <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
           <input
             onChange={handleChange}
-            value={userData["password"] || ""}
-            name="password"
+            value={userData["email"] || ""}
+            name="email"
             placeholder="Adresse email"
-            type="password"
+            type="email"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
           />
         </div>

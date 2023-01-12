@@ -42,7 +42,7 @@ const Section2 = () =>{
                                 </Grid>
                                 <Grid  item xs={8} lg={8} xl={8} md={8} sm={8}><h3 className={classes.h3}>C'est quoi smart-recrute</h3>
                                     <StyledParagraph>
-                                    Un outil  de gestion de candudatures et cv pour les postes chez smartone
+                                    Un outil  de gestion des candidatures et cv pour les postes chez Smartone.
                                     </StyledParagraph>
                                 </Grid>
                             </Grid>

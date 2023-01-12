@@ -16,8 +16,8 @@ export default function Details() {
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
           <input
             onChange={handleChange}
-            value={userData["address"] || ""}
-            name="address"
+            value={userData["Poste"] || ""}
+            name="poste"
             placeholder="nom du poste"
             className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
           />
@@ -30,9 +30,9 @@ export default function Details() {
         <div className="bg-white my-2 p-1 flex border border-gray-200 rounded">
           <input
             onChange={handleChange}
-            value={userData["city"] || ""}
-            name="city"
-            placeholder="ref du dossier"
+            value={userData["ref"] || ""}
+            name="ref"
+            placeholder="Réference de l'offre"
             type="text"
             className="p-1 px-2 appearance-none outline-none w-full text-gray-800"
           />

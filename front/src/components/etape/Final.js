@@ -1,6 +1,24 @@
+import { useState } from "react";
 import { Color } from "../palette/color";
+import { useStepperContext } from "../../context/StepperContext";
+import { useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { FetchCandidature } from "../../toolkit/offres";
 
 export default function Final() {
+    const { userData, setUserData } = useStepperContext();
+    const dispatch = useDispatch();
+    const candidatures = useSelector((state)=>state.offres.candidature.candidatures)
+    const [cand,setCand]=useState(null)
+    useEffect(()=>{
+        dispatch(FetchCandidature())
+        candidatures.forEach(element =>{
+          if(element.nom=userData.nom){
+            console.log("hey");
+          }
+        });
+    },[dispatch])
+    console.log(cand);
     return (
       <div className="container md:mt-10">
         <div className="flex flex-col items-center">

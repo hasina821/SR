@@ -17,9 +17,10 @@ const backURL="http://localhost:8000/api";
 
 export default function Post(){
      let {refe,nom}=useParams();
-     const dispatch=useDispatch()
+     const dispatch=useDispatch();
      const post=useSelector(state=>state.post);
      const candits = useSelector(state=>state.offres.candidatures);
+     const nbrecand = useSelector(state=>state.offres.nombrecandidat)
      const onDragEnd = async (result) =>{
           const { destination, source, draggableId} = result;
           if (!destination) {
@@ -53,7 +54,7 @@ export default function Post(){
                </h1>
                <Grid container>
                     <Grid style={{marginLeft:"1%"}} item xs={3/2} lg={3/2} md={3/2}>
-                         <Button variant="contained">Postulants <span className="text-yellow-500 ml-2"> (10) </span></Button>
+                         <Button variant="contained">Postulants <span className="text-yellow-500 ml-2"> ({nbrecand}) </span></Button>
                     </Grid>
                     <Grid item xs={10} lg={10} md={10}>
 

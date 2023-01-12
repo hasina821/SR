@@ -46,6 +46,7 @@ const initialState = {
     id_candidature:null,
     nameCandidature:null,
     offercandidature:[],
+    nombrecandidat :null
 }   
 
 export const  OffreSlice=createSlice({
@@ -119,6 +120,7 @@ export const  OffreSlice=createSlice({
             }
             
             state.candidatures = initialCandidatures;
+            state.nombrecandidat = data.length
         },
         [FetchCandidaturebyref.rejected]:(state,{payload})=>{
             state.status = "Rejected"

@@ -124,19 +124,6 @@ const PostList = ({listId,title,allowcreatecard,cards}) =>{
                               ))}
                               {allowcreatecard&&(
                                    <div key={title}>
-                                        {!(showform) &&(
-                                        <Grid container>
-                                             <Grid xs={10} lg={10}>
-                                                  <AddCardButton onClick = {Handleshowform}>
-                                                       <AddIcon/>
-                                                       {"  "}ajouter une carte
-                                                  </AddCardButton>
-                                             </Grid>
-                                             <Grid xs={1} lg={1}>
-                                                  <SaveIcon/>
-                                             </Grid>
-                                        </Grid>
-                                        )}
                                         {showform &&(
                                         <>
                                         <textarea 
